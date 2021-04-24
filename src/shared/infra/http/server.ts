@@ -2,11 +2,15 @@ import express from 'express';
 
 import '../typeorm';
 
+import '../../container';
+
+import { router } from './routes';
+
 const app = express();
 
-app.get('/', (request, response) => {
-  return response.json({ hello: 'world' });
-});
+app.use(express.json());
+
+app.use(router);
 
 app.listen(3333, () => {
   console.log('Server started at port 3333');
